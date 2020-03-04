@@ -100,6 +100,12 @@ class TestEcho(unittest.TestCase):
         self.assertEquals(stdout, text.title() + '\n')
 
         process = subprocess.Popen(
+            ["python", "./echo.py", "-ult", text],
+            stdout=subprocess.PIPE)
+        stdout, _ = process.communicate()
+        self.assertEquals(stdout, text.title() + '\n')
+
+        process = subprocess.Popen(
             ["python", "./echo.py", "-ul", text],
             stdout=subprocess.PIPE)
         stdout, _ = process.communicate()
